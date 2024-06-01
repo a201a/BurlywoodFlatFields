@@ -3,7 +3,6 @@ const axios = require('axios');
 module.exports = (bot) => {
     bot.onText(/\/bardimage/, async (msg) => {
         const chatId = msg.chat.id;
-        const replyToMessageId = msg.reply_to_message.message_id;
         const defaultQuestion = "ما الذي في هذه الصورة؟";
 
         let question = msg.text.split(" ").slice(1).join(" ");
@@ -14,6 +13,7 @@ module.exports = (bot) => {
             return;
         }
 
+        const replyToMessageId = msg.reply_to_message.message_id;
         const photoId = msg.reply_to_message.photo[msg.reply_to_message.photo.length - 1].file_id;
         const imageUrl = await bot.getFileLink(photoId);
 
@@ -35,7 +35,7 @@ module.exports = (bot) => {
 
             const content = bardResponse.data.content;
             if (content) {
-                const message = `${content}`;
+                const message = `${content}\n\nرابط الصورة: ${imgurUrl}`;
                 bot.sendMessage(chatId, message, { reply_to_message_id: replyToMessageId });
             } else {
                 bot.sendMessage(chatId, "لم أتمكن من تحديد ما في الصورة.", { reply_to_message_id: replyToMessageId });
