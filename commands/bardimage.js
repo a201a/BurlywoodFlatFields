@@ -13,7 +13,7 @@ module.exports = (bot) => {
             return;
         }
 
-        const replyToMessageId = msg.reply_to_message.message_id;
+        const replyToMessageId = msg.reply_to_message ? msg.reply_to_message.message_id : null;
         const photoId = msg.reply_to_message.photo[msg.reply_to_message.photo.length - 1].file_id;
         const imageUrl = await bot.getFileLink(photoId);
 
