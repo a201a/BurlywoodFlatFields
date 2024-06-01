@@ -11,11 +11,11 @@ module.exports = (bot) => {
             return;
         }
 
-        const url = `https://deku-rest-api.replit.app/gpt4?prompt=${question}&uid=100`;
+        const url = `https://gemini-ai-pearl-two.vercel.app/kshitiz?prompt=${question}&apikey=kshitiz`;
 
         try {
             const response = await axios.get(url);
-            const content = response.data.gpt4;
+            const content = response.data.answer;
 
             bot.sendMessage(chatId, `${content}`, { parse_mode: 'Markdown' });
         } catch (error) {

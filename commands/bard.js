@@ -1,26 +1,27 @@
 const axios = require('axios');
 
 module.exports = (bot) => {
-    bot.onText(/bard/, async (msg) => {
+    bot.onText(/\/bard (.+)/, (msg, match) => {
         const chatId = msg.chat.id;
-        const command = msg.text.split(' ')[0];
-        const question = msg.text.substring(command.length + 1);
+        const query = match[1]; // النص المدخل بعد الأمر /bard
 
-        if (!question) {
-            bot.sendMessage(chatId, '*اكتب سؤال إذا ممكن*');
-            return;
-        }
+        const data = {
+            ask: query
+        };
 
-        const url = `https://hercai.onrender.com/v3/hercai?question=${question}`;
-
-        try {
-            const response = await axios.get(url);
-            const content = response.data.reply;
-
-            bot.sendMessage(chatId, `${content}`, { parse_mode: 'Markdown' });
-        } catch (error) {
-            console.error(error);
-            bot.sendMessage(chatId, `*حدث خطأ أثناء البحث عن ${question}*`, { parse_mode: 'Markdown' });
-        }
+        axios.post('https://bard.rizzy.eu.org/backend/conversation/gemini', data, {
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            const content = response.data.content; // Extracting the 'content' field
+            bot.sendMessage(chatId, content ? content : "Hello there! How can I assist?");
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            bot.sendMessage(chatId, 'حدث خطأ أثناء معالجة طلبك.');
+        });
     });
 };
