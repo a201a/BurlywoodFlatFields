@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 
-const botToken = '6616314140:AAF2g3IEGxQQuLZyMgxBmSijAceHE7BCcGU';
+const botToken = '6616314140:AAGs9-b_d0MMEkSW4omOr1SES3QXs16CqtU';
 const bot = new TelegramBot(botToken, { polling: true });
 
 // تحميل الأوامر من ملفات مجلد الأوامر
