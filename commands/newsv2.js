@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const cron = require('node-cron');
 
-const CHANNEL_ID = '-1002157846698'; // معرف القناة الخاصة بك
+const CHANNEL_ID = '1002157846698'; // معرف القناة الخاصة بك
 
 // تعيين أسماء المحافظات بالإنجليزية
 const provinces = {
