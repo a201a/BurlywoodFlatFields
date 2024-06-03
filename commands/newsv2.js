@@ -28,8 +28,8 @@ const provinces = {
 };
 
 module.exports = (bot) => {
-  // جدولة المهمة للنشر الآلي كل ساعتين
-  cron.schedule('0 */2 * * *', async () => {
+  // جدولة المهمة للنشر الآلي كل ساعة
+  cron.schedule('0 * * * *', async () => {
     try {
       // اختيار محافظتين عشوائيتين
       const randomProvince1 = getRandomProvince();
