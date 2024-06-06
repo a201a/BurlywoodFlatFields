@@ -8,7 +8,7 @@ module.exports = async (bot) => {
             const chapterNumber = match[2];
             
             try {
-                const url = `https://alifadel2-1.onrender.com/manga?name=${mangaName}&chapter=${chapterNumber}`;
+                const url = `https://alifadel2-1.vercel.app/manga?name=${mangaName}&chapter=${chapterNumber}`;
                 const response = await fetch(url);
                 const responseData = await response.json();
                 
