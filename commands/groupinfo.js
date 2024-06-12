@@ -7,6 +7,7 @@ module.exports = (bot) => {
                 bot.getChatMemberCount(chatId),
                 bot.getChatAdministrators(chatId)
             ]).then(([count, admins]) => {
+                const owner = admins.find(admin => admin.status === 'creator');
                 const groupInfo = `
                 معلومات المجموعة:
                 - اسم المجموعة: ${chat.title}
@@ -17,7 +18,7 @@ ${chat.description || 'لا يوجد'}
                 - عدد الأعضاء: ${count}
                 - عدد المشرفين: ${admins.length}
                 - يمكن للأعضاء دعوة الآخرين: ${chat.can_invite_users ? 'نعم' : 'لا'}
-                - معرف المالك: ${chat.owner ? chat.owner.id : 'غير معروف'}
+                - معرف المالك: @${owner ? owner.user.username : 'غير معروف'}
                 - الرابط الدائم للمجموعة: ${chat.invite_link ? chat.invite_link : 'غير متاح'}
                 `;
                 bot.sendMessage(chatId, groupInfo);
