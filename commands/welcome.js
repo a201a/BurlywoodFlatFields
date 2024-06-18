@@ -1,6 +1,6 @@
 // startCommand.js
 module.exports = (bot) => {
-    bot.onText(/\/start/, (msg) => {
+    bot.onText(/\/welcome/, (msg) => {
         const chatId = msg.chat.id;
         bot.sendMessage(chatId, 'مرحبا بك! أنا بوت الترحيب.');
     });
