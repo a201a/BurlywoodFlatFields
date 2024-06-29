@@ -20,7 +20,7 @@ module.exports = (bot) => {
             bot.sendMessage(chatId, formattedHadithSharh, { parse_mode: 'Markdown' });
         } catch (error) {
             console.error('Error:', error.message);
-            bot.sendMessage(chatId, 'حدث خطأ أثناء جلب شرح الحديث.');
+            bot.sendMessage(chatId, 'حدث خطأ أثناء جلب شرح الحديث.\n' + error);
         }
     });
 };
