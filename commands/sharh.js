@@ -6,7 +6,7 @@ module.exports = (bot) => {
         const hadithId = match[1];
 
         try {
-            const response = await axios.get(`https://dorar-hadith-api-laq9.onrender.com/v1/site/sharh/text/${hadithId}`);
+            const response = await axios.get(`https://dorar-hadith-api-one.vercel.app/v1/site/sharh/text/${hadithId}`);
             const hadithInfo = response.data.data;
             const formattedHadithSharh = `
                 *الحديث:* ${hadithInfo.hadith}
