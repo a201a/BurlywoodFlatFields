@@ -1,14 +1,11 @@
-const fs = require('fs');
-const axios = require ('axios');
-        const request = require ('request');
-       // const fs = require ('fs-extra');
-
-const azkar = JSON.parse(fs.readFileSync('azkar.json', 'utf8'));
+const axios = require('axios');
+const request = require('request');
 
 module.exports = (bot) => {
     bot.onText(/\/رمضان/, (msg) => {
         const chatId = msg.chat.id;
 
+        // قائمة الصور
         const link = [
             "https://i.postimg.cc/wMc52Zmc/inbound4291013221920849440.jpg",
             "https://i.postimg.cc/kMLKQChm/inbound3981762536113776467.jpg",
@@ -25,7 +22,7 @@ module.exports = (bot) => {
             "https://i.postimg.cc/4dcZjjVr/inbound3075581209921098210.jpg",
         ];
 
-        const randomAzkar = azkar[Math.floor(Math.random() * azkar.length)];
+        // حساب الوقت المتبقي حتى رمضان
         const endDate = new Date("April 1, 2024 18:00:00").getTime();
         const startDate = Date.now();
         const t = endDate - startDate;
@@ -34,13 +31,15 @@ module.exports = (bot) => {
         const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
         const days = Math.floor(t / (1000 * 60 * 60 * 24));
 
+        // اختيار صورة عشوائية
         const chosenLink = link[Math.floor(Math.random() * link.length)];
 
+        // إرسال الصورة مع التوقيت المتبقي
         bot.sendPhoto(
             chatId,
             chosenLink,
             {
-                caption: `🌙 الوقت المتبقي حتى رمضان 🌙\n» ${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية«\nالأذكار: ${randomAzkar.zekr}`
+                caption: `🌙 الوقت المتبقي حتى رمضان 🌙\n» ${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية«`
             }
         );
     });
